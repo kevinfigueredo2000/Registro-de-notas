@@ -33,14 +33,14 @@ $("#genprom").on("click",function(){
                                     <p>Alumno:${nombre.val()}</p>
                                     <p>Promedio:${alumno1.calcularPromedio(ndiv)}</p>
                                 </div>
-                                <div class="col-6"> 
+                                <div class="col-6" id="p2"> 
                                     <a href="#" id="eliminar"><i class="fas fa-trash-alt text-right"></i></a>
                                     <a href="#" id="editar"><i class="fas fa-edit"></i></a>
                                 </div>
                             </div>
                          </div>`
                             )     
-    $("#prueba").slideDown(3000);                     
+    $("#p2").hide(0).fadeIn(3000); /*hacer contador */                    
     $("#not").val("");
     $("#nom").val("");
 })
