@@ -51,4 +51,3 @@ $("#mas").on("click", function(){
 $("#eliminar").on("click", function(){
     $("#prueba").remove();
 })
-fd 
