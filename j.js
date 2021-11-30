@@ -39,7 +39,8 @@ $("#genprom").on("click",function(){
                                 </div>
                             </div>
                          </div>`
-                            )                 
+                            )     
+    $("#prueba").slideDown(3000);                     
     $("#not").val("");
     $("#nom").val("");
 })
