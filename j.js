@@ -22,33 +22,36 @@ let ndiv = [];
 
 let np = ndiv.length;
 
-let alumno1 = new alumno(nombre, nota1, ndiv, np);
+let contador = 0;
 
 $("#genprom").on("click",function(){
+    let alumno1 = new alumno(nombre, nota1, ndiv, np);
     ndiv.push(parseInt($("#not").val().split(",")));
-    $("#padre").append(
-                        `<div class="container card" id="prueba">
+    $(`#padre`).append(
+                        `<div class="container card contador${contador}" id="prueba">
                             <div class="row"> 
                                 <div class="col-6"> 
                                     <p>Alumno:${nombre.val()}</p>
                                     <p>Promedio:${alumno1.calcularPromedio(ndiv)}</p>
                                 </div>
                                 <div class="col-6" id="p2"> 
-                                    <a href="#" id="eliminar"><i class="fas fa-trash-alt text-right"></i></a>
-                                    <a href="#" id="editar"><i class="fas fa-edit"></i></a>
+                                    <a href="#" id="eliminar"><i class="fas fa-trash-alt text-right btn btn-danger eliminar"></i></a>
+                                    <a href="#" id="editar"><i class="fas fa-edit btn btn-info"></i></a>
                                 </div>
                             </div>
                          </div>`
                             )     
-    $("#p2").hide(0).fadeIn(3000); /*hacer contador */                    
+    $(`.contador${contador}`).hide(0).fadeIn(1000);                 
     $("#not").val("");
     $("#nom").val("");
+    contador ++;
+})
+$(`.eliminar${contador}`).on("click", function(){
+    $(`.contador${contador}`).remove(0).fadeOut(1000);
 })
 
 $("#mas").on("click", function(){
     ndiv.push(parseInt($("#not").val().split(",")));
     $("#not").val("");
-})
-$("#eliminar").on("click", function(){
-    $("#prueba").remove();
+    $("#not").focus()
 })

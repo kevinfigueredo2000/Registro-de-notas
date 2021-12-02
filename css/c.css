@@ -2,6 +2,12 @@ nav{
     background-color: skyblue;
 }
 .fa-plus{
-    font-size: 20px;
-    color: skyblue;
+    font-size: 17px;
+    color: white;
+    background-color: skyblue;
+    border-radius: 25px;
+    border: solid;
+    padding: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
