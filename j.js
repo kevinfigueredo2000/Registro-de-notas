@@ -35,8 +35,8 @@ $("#genprom").on("click",function(){
                                     <p>Promedio:<b>${alumno1.calcularPromedio(ndiv)}</b></p>
                                 </div>
                                 <div class="col-6 mt-3" id="p2"> 
-                                    <a href="#"><i class="fas fa-trash-alt text-right btn btn-danger eliminar${contador}"></i></a>
-                                    <a href="#"><i class="fas fa-edit btn btn-info"></i></a>
+                                    <a href="#"><i class="fas fa-trash-alt text-right btn btn-danger btn-sm eliminar${contador}"></i></a>
+                                    <a href="#"><i class="fas fa-edit btn btn-info btn-sm"></i></a>
                                 </div>
                             </div>
                          </div>`
