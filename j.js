@@ -28,7 +28,7 @@ $("#genprom").on("click",function(){
     let alumno1 = new alumno(nombre, nota1, ndiv, np);
     ndiv.push(parseInt($("#not").val().split(",")));
     $(`#padre`).append(
-                        `<div class="container card contador${contador} mt-3">
+                        `<div class="container card contador${contador} mt-3 limp">
                             <div class="row mt-3" id="apro${contador}"> 
                                 <div class="col-6"> 
                                     <p>Alumno:<b>${nombre.val()}</b></p>
@@ -49,17 +49,21 @@ $("#genprom").on("click",function(){
     contador ++;
 })
 
+//limpiar lista alumnos
 
-$(`.eliminar${contador}`).on("click", function(){
-    $(`.contador${contador}`).remove();
+$("#limpiar").on("click", function(){
+    $(".limp").remove().fadeOut();
 })
 
+//sumar numeros
 
 $("#mas").on("click", function(){
     ndiv.push(parseInt($("#not").val().split(",")));
     $("#not").val("");
     $("#not").focus()
 })
+
+//validar si está aplicado todo bien
 
 function validar(){
     var alumno1 = new alumno(nombre, nota1, ndiv, np);
