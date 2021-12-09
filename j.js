@@ -49,7 +49,12 @@ $("#genprom").on("click",function(){
     contador ++;
 })
 
-//limpiar lista alumnos
+
+$(`.eliminar${contador}`).on("click", function(){
+    $(`.contador${contador}`).remove().fadeOut();
+})
+
+//limpiar lista completa alumnos
 
 $("#limpiar").on("click", function(){
     $(".limp").remove().fadeOut();
