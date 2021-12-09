@@ -28,7 +28,7 @@ $("#genprom").on("click",function(){
     let alumno1 = new alumno(nombre, nota1, ndiv, np);
     ndiv.push(parseInt($("#not").val().split(",")));
     $(`#padre`).append(
-                        `<div class="container card contador${contador} mt-3" id="prueba">
+                        `<div class="container card contador${contador} mt-3">
                             <div class="row mt-3" id="apro${contador}"> 
                                 <div class="col-6"> 
                                     <p>Alumno:<b>${nombre.val()}</b></p>
@@ -41,16 +41,19 @@ $("#genprom").on("click",function(){
                             </div>
                          </div>`
                             )    
-    aprobado();
+    validar();
     $(`.contador${contador}`).hide(0).fadeIn(1000);     
     ndiv = [];         
     $("#not").val("");
     $("#nom").val("");
     contador ++;
 })
+
+
 $(`.eliminar${contador}`).on("click", function(){
-    $(`.contador${contador}`).remove().fadeOut(1000);
+    $(`.contador${contador}`).remove();
 })
+
 
 $("#mas").on("click", function(){
     ndiv.push(parseInt($("#not").val().split(",")));
@@ -58,9 +61,9 @@ $("#mas").on("click", function(){
     $("#not").focus()
 })
 
-function aprobado(){
+function validar(){
     var alumno1 = new alumno(nombre, nota1, ndiv, np);
-    if(alumno1.calcularPromedio(ndiv) >= 7){
+    if(($("#nom").val() !== "") && (alumno1.calcularPromedio(ndiv) >= 7)){
         $(`#apro${contador}`).append(
             `
                 <div class="col-sm-12 alert alert-success">
@@ -68,8 +71,7 @@ function aprobado(){
                 </div>
             `
         )
-        console.log("aprobado");
-    }else if(alumno1.calcularPromedio(ndiv) <= 7){
+    }else if(($("#nom").val() !== "") && (alumno1.calcularPromedio(ndiv) <= 7)){
         $(`#apro${contador}`).append(
             `
                 <div class="col-sm-12 alert alert-warning">
@@ -78,11 +80,13 @@ function aprobado(){
             `
         )
     }else{
-        $(`#apro${contador}`).append(
+        $(`#alerta`).append(
             `
-                <div class="col-sm-12 alert alert-danger">
-                    <strong>¡No se selecciono ninguna nota!</strong>
+                <div class="col-sm-12 mt-3 alert alert-danger" id="al${contador}">
+                    <strong>¡No se seleccionó ninguna nota y/o nombre!</strong>
                 </div>
             `)
+        $(`.contador${contador}`).remove();
+        $(`#al${contador}`).fadeOut(4000);
     }
 }
