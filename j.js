@@ -30,7 +30,7 @@ $("#genprom").on("click",function(){
     $(`#padre`).append(
                         `
                         <form name="formulario">
-                            <div class="container card contador${contador} mt-3 limp">
+                            <div class="container card-1 contador${contador} mt-3 limp">
                                 <div class="row mt-3" id="apro${contador}"> 
                                     <div class="col-6"> 
                                         <p>Alumno:<b>${nombre.val()}</b></p>
@@ -70,6 +70,16 @@ $("#mas").on("click", function(){
     ndiv.push(parseInt($("#not").val().split(",")));
     $("#not").val("");
     $("#not").focus()
+})
+
+// enter en mas, auto focus
+
+$("#not").on("keypress", function(event){
+    if(event.key === "Enter"){
+        ndiv.push(parseInt($("#not").val().split(",")));
+        $("#not").val("");
+        $("#not").focus()
+    }
 })
 
 //validar si está aplicado todo bien, sino carteles

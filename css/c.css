@@ -11,3 +11,33 @@ nav{
     padding-left: 5px;
     padding-right: 5px;
 }
+.card-1{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid black !important;
+    border-radius: 32px !important;
+}
+#importante{
+    color: red;
+}
+#div-imp{
+    display: -webkit-inline-box;
+}
+#btn-buscar{
+    position: absolute;
+    margin: 15px 0px 0px 193px;
+}
+#inp-busc{
+    margin: 16px 0px 0px 4px;
+    position: absolute;
+}
+.btn-clarito{
+    color: #000;
+    background-color: #F8F9EC;
+    border-color: black;
+}

@@ -17,36 +17,38 @@
 </head>
 <body>
     <nav>
-        <div class="row">
-            <div class="col-sm-5">
-                <h1>
-                    Registro de notas
-                </h1>
-            </div>
-            <div class="col-sm-7 my-3 text-left ">
-                <input type="text" placeholder="Buscar alumno"><button class="btn btn-light btn-sm mb-1">Buscar</button>
-            </div>
+        <div class="row py-2">
+            <h1 class="text-center">
+                Registro de notas
+            </h1>
         </div>
     </nav>
     <main>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 text-center mt-3" id="alerta">
-                    <h2 class="">Ingrese las notas del alumno</h2>
-                    <div class="col-sm-10 card mx-5 mt-3">
-                        <label for="nom"class="mt-3">Nombre:</label><br>
-                        <input type="text" id="nom" class="mx-5"><br>
-                        <label for="not">Notas:</label> <br>
-                        <input type="text" id="not" class="mx-5">
-                        <a href="#" id="padre2"><i class="fas fa-plus mt-3" id="mas"></i></a><br>
-                        <input type="submit" value="Generar promedio" class="my-3 btn btn-primary mx-5" id="genprom"> 
+                    <h2>Ingrese las notas del alumno</h2>
+                    <div id="div-imp" class="mt-2">
+                        <p id="importante">¡IMPORTANTE!</p>
+                        <b><p>Para ingresar mas de una nota debes apretar el "mas" o el "enter"</p></b>
+                    </div>
+                    <div class="col-sm-10 card-1 mx-5 mt-3">
+                        <label for="nom" class="my-3">Nombre:</label>
+                        <input type="text" id="nom" class="m-auto col-sm-8">
+                        <label for="not" class="my-3">Notas:</label> 
+                        <input type="number" id="not" class="m-auto col-sm-8">
+                        <a href="#" id="padre2"><i class="fas fa-plus mt-3" id="mas"></i></a>
+                        <input type="submit" value="Generar promedio" class="my-3 btn btn-primary m-auto" id="genprom"> 
                     </div>
                 </div>
                 <div class="col-sm-6 mt-3" id="padre">  
                     <h2 class="text-center">Notas promediadas</h2>
-                    <a href="#" id="limpiar"><i class="fas fa-trash-alt btn btn-danger btn-sm mt-3"></i></a>
-                    <a href="#" class="btn btn-sm btn-info mt-3 a-z"><i class="fas fa-sort-alpha-up-alt"></i></a>
-                    <a href="#" class="btn btn-sm btn-info mt-3"><i class="fas fa-sort-numeric-up"></i></a>
+                    <div>
+                        <a href="#" id="limpiar"><i class="fas fa-trash-alt btn btn-danger btn-sm mt-3"></i></a>
+                        <a href="#" class="btn btn-sm btn-info mt-3 a-z"><i class="fas fa-sort-alpha-up-alt"></i></a>
+                        <a href="#" class="btn btn-sm btn-info mt-3"><i class="fas fa-sort-numeric-up"></i></a>
+                        <input type="text" placeholder="Buscar alumno" id="inp-busc"><button id="btn-buscar" class="btn btn-clarito btn-sm">Buscar</button>
+                    </div>
                 </div>
             </div>
         </div>
