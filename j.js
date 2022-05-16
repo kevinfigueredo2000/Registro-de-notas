@@ -28,18 +28,22 @@ $("#genprom").on("click",function(){
     let alumno1 = new alumno(nombre, nota1, ndiv, np);
     ndiv.push(parseInt($("#not").val().split(",")));
     $(`#padre`).append(
-                        `<div class="container card contador${contador} mt-3 limp">
-                            <div class="row mt-3" id="apro${contador}"> 
-                                <div class="col-6"> 
-                                    <p>Alumno:<b>${nombre.val()}</b></p>
-                                    <p>Promedio:<b>${alumno1.calcularPromedio(ndiv)}</b></p>
-                                </div>
-                                <div class="col-6 mt-3" id="p2"> 
-                                    <a href="#"><i class="fas fa-trash-alt text-right btn btn-danger btn-sm eliminar${contador}"></i></a>
-                                    <a href="#"><i class="fas fa-edit btn btn-info btn-sm"></i></a>
+                        `
+                        <form name="formulario">
+                            <div class="container card contador${contador} mt-3 limp">
+                                <div class="row mt-3" id="apro${contador}"> 
+                                    <div class="col-6"> 
+                                        <p>Alumno:<b>${nombre.val()}</b></p>
+                                        <p>Promedio:<b>${alumno1.calcularPromedio(ndiv)}</b></p>
+                                    </div>
+                                    <div class="col-6 mt-3" id="p2"> 
+                                        <a href="#"><i class="fas fa-trash-alt text-right btn btn-danger btn-sm eliminar${contador}"></i></a>
+                                        <a href="#"><i class="fas fa-edit btn btn-info btn-sm"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                         </div>`
+                        </form>
+                         `
                             )    
     validar();
     $(`.contador${contador}`).hide(0).fadeIn(1000);     
@@ -51,7 +55,7 @@ $("#genprom").on("click",function(){
 
 
 $(`.eliminar${contador}`).on("click", function(){
-    $(`.contador${contador}`).remove().fadeOut();
+    $(`.contador${contador}`).remove().fadeOut(3000);
 })
 
 //limpiar lista completa alumnos
@@ -68,7 +72,7 @@ $("#mas").on("click", function(){
     $("#not").focus()
 })
 
-//validar si está aplicado todo bien
+//validar si está aplicado todo bien, sino carteles
 
 function validar(){
     var alumno1 = new alumno(nombre, nota1, ndiv, np);
@@ -99,3 +103,8 @@ function validar(){
         $(`#al${contador}`).fadeOut(4000);
     }
 }
+
+//ordenar de a-z
+$("#a-z").on("click", function(){
+    total-alumnos.sort();
+})
