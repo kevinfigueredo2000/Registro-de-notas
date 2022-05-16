@@ -37,7 +37,7 @@ nav{
     position: absolute;
 }
 .btn-clarito{
-    color: #000;
-    background-color: #F8F9EC;
-    border-color: black;
+    color: #000!important;
+    background-color: #F8F9EC!important;
+    border-color: black !important;
 }
