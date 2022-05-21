@@ -26,33 +26,40 @@
     <main>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 text-center mt-3" id="alerta">
-                    <h2>Ingrese las notas del alumno</h2>
-                    <div id="div-imp" class="mt-2">
-                        <p id="importante">¡IMPORTANTE!</p>
-                        <b><p>Para ingresar mas de una nota debes apretar el "mas" o el "enter"</p></b>
+                    <div class="col-sm-6 text-center mt-3" id="alerta">
+                        <h2>Ingrese las notas del alumno</h2>
+                        <div id="div-imp" class="mt-2">
+                            <b><p>Para ingresar mas de una nota debes apretar el "mas" o el "enter"</p></b>
+                        </div>
+                        <form id="formProm">
+                            <div class="col-sm-10 card-1 mx-5 mt-3">
+                                <label for="nom" class="my-3">Nombre:</label>
+                                <input type="text" id="nom" class="m-auto col-sm-8">
+                                <label for="not" class="my-3">Notas:</label> 
+                                <input type="number" id="not" class="m-auto col-sm-8">
+                                <a href="#" id="padre2"><i class="fas fa-plus mt-3" id="mas"></i></a>
+                                <input type="submit" value="Generar promedio" class="my-3 btn btn-primary m-auto" id="genprom"> 
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-sm-10 card-1 mx-5 mt-3">
-                        <label for="nom" class="my-3">Nombre:</label>
-                        <input type="text" id="nom" class="m-auto col-sm-8">
-                        <label for="not" class="my-3">Notas:</label> 
-                        <input type="number" id="not" class="m-auto col-sm-8">
-                        <a href="#" id="padre2"><i class="fas fa-plus mt-3" id="mas"></i></a>
-                        <input type="submit" value="Generar promedio" class="my-3 btn btn-primary m-auto" id="genprom"> 
+                    <div class="col-sm-6 mt-3" id="padre">  
+                        <h2 class="text-center">Notas promediadas</h2>
+                        <div>
+                            <a href="#" id="limpiar"><i class="fas fa-trash-alt btn btn-danger btn-sm mt-3"></i></a>
+                            <a href="#" class="btn btn-sm btn-info mt-3 a-z"><i class="fas fa-sort-alpha-up-alt"></i></a>
+                            <a href="#" class="btn btn-sm btn-info mt-3"><i class="fas fa-sort-numeric-up"></i></a>
+                            <input type="text" placeholder="Buscar alumno" id="inp-busc">
+                            <button id="btn-buscar" class="btn btn-clarito btn-sm">Buscar</button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6 mt-3" id="padre">  
-                    <h2 class="text-center">Notas promediadas</h2>
-                    <div>
-                        <a href="#" id="limpiar"><i class="fas fa-trash-alt btn btn-danger btn-sm mt-3"></i></a>
-                        <a href="#" class="btn btn-sm btn-info mt-3 a-z"><i class="fas fa-sort-alpha-up-alt"></i></a>
-                        <a href="#" class="btn btn-sm btn-info mt-3"><i class="fas fa-sort-numeric-up"></i></a>
-                        <input type="text" placeholder="Buscar alumno" id="inp-busc"><button id="btn-buscar" class="btn btn-clarito btn-sm">Buscar</button>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
 </body>
-<script src="RegistroNotas.js"></script>
+    <!-- <script src="RegistroNotas.js" type="module"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebase.js/8.9.1/firebase-firestore.js" type="module"></script> -->
+    <script src="firestore.js" type="module"></script>
+    <script src="generarPromedio.js" type="module"></script>
+    <script src="utils.js"></script>
+    <script src="validar.js"></script>
 </html>

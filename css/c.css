@@ -25,9 +25,6 @@ nav{
 #importante{
     color: red;
 }
-#div-imp{
-    display: -webkit-inline-box;
-}
 #btn-buscar{
     position: absolute;
     margin: 15px 0px 0px 193px;
