@@ -22,10 +22,11 @@ window.addEventListener('DOMContentLoaded', async ()=>{
                     <div class="row mt-3" id="apro${contador}"> 
                         <div class="col-6"> 
                             <p>Alumno:<b>${dato.nombre}</b></p>
-                            <p>Promedio:<b>${dato.notas}</b></p>
+                            <p>Notas:<b>${dato.notas}</b></p>
+                            <p>Promedio:<b>${dato.promedio}</b></p>
                         </div>
                         <div class="col-6 mt-3" id="p2"> 
-                            <a href="#" ><i class="fas fa-trash-alt text-right btn btn-danger btn-sm" data-id=${element.id}></i></a>
+                            <a href="#" class="eliminar"><i class="fas fa-trash-alt text-right btn btn-danger btn-sm" data-id=${element.id}></i></a>
                             <a href="#"class="editar"><i class="fas fa-edit btn btn-info btn-sm" data-id=${element.id}></i></a>
                         </div>
                     </div>
@@ -66,14 +67,38 @@ window.addEventListener('DOMContentLoaded', async ()=>{
     }) */
     
 })
+// calcular promedio ya funciona, falta aplicar a los cards y al firebase
+function calcularPromedio(arrayNotas){
+    let contador = 0;
+    for(let elemento of arrayNotas){
+        contador = contador + elemento;
+    }
+    let largo = arrayNotas.length;
+    let promedio = (contador / largo);
+    console.log(promedio);
+    return(promedio);
+}   
+
+//------------------------------------BOTÓN MAS---------------------------------------------------------------------
+let arrayNotas = [];
+$("#mas").on("click", function(){
+    //let nota = $("#not").val(null);
+    arrayNotas.push(parseInt($("#not").val()));
+    console.log(arrayNotas);
+    //insert(nota);
+    $("#not").val("");
+    $("#not").focus()
+})    
 
 //------------------función que crea un div con los datos ingresados-------------------------------
 
 $(`#genprom`).on('click', function(){
     let nombre = $("#nom").val();
     let nota = $("#not").val();
+    let promedio = calcularPromedio(arrayNotas);
     if(!editStatus){
-        insert(nombre, nota);
+        calcularPromedio(arrayNotas);
+        insert(nombre, arrayNotas, promedio);
     }else{
         actualizarRegistro(id,{nombre, nota});
         editStatus = false;
@@ -86,7 +111,8 @@ $(`#genprom`).on('click', function(){
                 <div class="row mt-3" id="apro${contador}"> 
                     <div class="col-6"> 
                         <p>Alumno:<b>${nombre}</b></p>
-                        <p>Promedio:<b>${nota}</b></p>
+                        <p>Notas:<b>${arrayNotas}</b></p>
+                        <p>Promedio:<b>${promedio}</b></p>
                     </div>
                     <div class="col-6 mt-3" id="p2"> 
                         <a href="#"><i class="fas fa-trash-alt text-right btn btn-danger btn-sm"></i></a>
@@ -99,7 +125,7 @@ $(`#genprom`).on('click', function(){
         )    
  // usa la función de validar si aprobó o no
     $(`.contador${contador}`).hide(0).fadeIn(1000);// muestra con efecto el div donde estan los datos subidos
-    //ndiv = []; // setea en cero el array (viejo--cambiarlo)     
+    arrayNotas = []; // setea en cero el array (viejo--cambiarlo)     
     $("#not").val("");// setea en blanco los inputs
     $("#nom").val("");// setea en blanco los inputs
     contador ++;//contador de div para separar y crear uno nuevo
@@ -115,14 +141,6 @@ $("#not").on("keypress", function(event){
         $("#not").focus()
     }
 }) 
-//------------------------------------BOTÓN MAS---------------------------------------------------------------------
-$("#mas").on("click", function(){
-    let nota = $("#not").val(null);
-    insert(nota);
-    $("#not").val("");
-    $("#not").focus()
-})
-
 /*  function calcularPromedio(ndiv){
     let nota = $("#not").val(null);
     let contador = 0;

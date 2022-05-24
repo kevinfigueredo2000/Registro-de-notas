@@ -17,15 +17,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 //referencia firestore
-export const insert=(nombre, nota)=>{
-    addDoc(collection(db, 'RegistroNotas'),{nombre: nombre, notas: [nota]});
+export const insert=(nombre, nota, promedio)=>{
+    addDoc(collection(db, 'RegistroNotas'),{nombre: nombre, notas: nota, promedio: promedio});
 }
 export const sumar=(nota)=>{
     addDoc(collection(db, 'RegistroNotas'),{notas: [nota]});
 }
 export const getRegistros =()=> getDocs(collection(db,'RegistroNotas'));
 
-export const eliminarRegistro =(id)=> deleteDoc(doc(db, 'RegistroNotas',id));
+export const eliminarRegistro =id=> deleteDoc(doc(db, 'RegistroNotas',id));
 
 //export const eliminarTodo =()=> deleteDoc((db, 'RegistroNotas'));
 

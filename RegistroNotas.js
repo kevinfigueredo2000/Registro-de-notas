@@ -82,7 +82,7 @@ $("#limpiar").on("click", function(){
 $("#mas").on("click", function(){
     ndiv.push(parseInt($("#not").val().split(",")));
     $("#not").val("");
-    $("#not").focus()
+    $("#not").focus();
 })
 
 // enter en mas, auto focus
