@@ -26,13 +26,12 @@
 </head>
 
 <body>
-    <nav>
-        <div class="row py-2">
-            <h1 class="text-center">
-                Registro de notas
-            </h1>
+    <nav class="nav p-2">
+        <a class="nav-link disabled">RegistroNotas</a>
+        <div class="container">
+            <div class="log"></div>
         </div>
-    </nav>
+      </nav>
     <main>
         <div class="container">
             <div class="row">
@@ -53,7 +52,18 @@
                     </div>
                 </div>
                 <div class="col-sm-6 mt-3" id="padre">
-                    <h2 class="text-center">Notas promediadas</h2>
+                    <h2 class="text-center">Materias</h2>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#">Matemática 1</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Programación 1</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Diseño</a>
+                        </li>
+                      </ul>
                     <div>
                         <a href="#" id="limpiar"><i class="fas fa-trash-alt btn btn-danger btn-sm mt-3"></i></a>
                         <a href="#" class="btn btn-sm btn-info mt-3 a-z"><i class="fas fa-sort-alpha-up-alt"></i></a>

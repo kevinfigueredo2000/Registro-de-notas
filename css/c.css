@@ -19,8 +19,8 @@ nav{
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid black !important;
-    border-radius: 32px !important;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 #importante{
     color: red;
@@ -37,4 +37,13 @@ nav{
     color: #000!important;
     background-color: #F8F9EC!important;
     border-color: black !important;
+}
+.log{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    margin-top: 4px;
+    border: solid;
+    border-color: #000;
 }

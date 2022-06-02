@@ -27,8 +27,6 @@ export const getRegistros =()=> getDocs(collection(db,'RegistroNotas'));
 
 export const eliminarRegistro =id=> deleteDoc(doc(db, 'RegistroNotas',id));
 
-//export const eliminarTodo =()=> deleteDoc((db, 'RegistroNotas'));
-
 export const getRegistro =(id)=> getDoc(doc(db,'RegistroNotas', id));
 
-export const actualizarRegistro = (id, nuevoCampo)=>{updateDoc(doc(db, 'RegistroNotas', id), nuevoCampo)}
+export const actualizarRegistro = (id, nuevoNombre, nuevasNotas, nuevoPromedio)=>{updateDoc(doc(db, 'RegistroNotas', id), nuevoNombre, nuevasNotas, nuevoPromedio)}
