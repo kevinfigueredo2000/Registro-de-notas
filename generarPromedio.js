@@ -4,8 +4,6 @@ import { insert, getRegistros, eliminarRegistro, getRegistro, actualizarRegistro
 let contador = 0;
 let editStatus = false;
 let id = "";
-let seleccionarForm = document.querySelector(`form`);
-
 
 //---------------------AL CARGAR PÁGINA, MOSTRAR LOS REGISTROS DE NOTAS DE LA BASE DE DATOS------------------------
 window.addEventListener('DOMContentLoaded', async ()=>{
@@ -47,6 +45,7 @@ window.addEventListener('DOMContentLoaded', async ()=>{
     const btnsEliminar = $(`.eliminar`);
     //HACIENDO CLICK, LLAMA A UNA FUNCION Q TOMA COMO PARAMETRO AL OBJETIVO SELECCIONADO CON LOS DATOS
     btnsEliminar.on('click', function({target:{dataset}}){
+        let seleccionarForm = document.querySelector(`form`);
         $(seleccionarForm).remove()
         //ELIMINA EL REGISTRO POR SU ID
         eliminarRegistro(dataset.id);
@@ -69,6 +68,7 @@ window.addEventListener('DOMContentLoaded', async ()=>{
         $("#not").val(reg.promedio);
         editStatus = true;
         id = dataset.id;
+        let seleccionarForm = document.querySelector(`form`);
         $(seleccionarForm).hide(300)
         $('#genprom').val('Actualizar')
     })
@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', async ()=>{
                 <div class="container card-1  mt-2 limp">
                     <div class="row mt-3" id="apro${contador}"> 
                         <div class="col-10"> 
-                            <p>Alumno:<b> ${prueba1.sort()}</b></p>
+                            <p>Alumno:<b> ${dato.nombre}</b></p>
                             <p>Notas:<b> ${dato.notas}</b></p>
                             <p>Promedio:<b> ${dato.promedio}</b></p>
                         </div>
