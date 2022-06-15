@@ -1,4 +1,6 @@
-/* function validar(){
+/*
+ // usa la función de validar si aprobó o no
+function validar(){
     //var alumno1 = new alumno(nombre, nota1, ndiv, np);
     if(($("#nom").val() !== "") && (alumno1.calcularPromedio(ndiv) >= 7)){
         $(`#apro${contador}`).append(

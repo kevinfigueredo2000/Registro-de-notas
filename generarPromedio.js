@@ -4,6 +4,7 @@ import { insert, getRegistros, eliminarRegistro, getRegistro, actualizarRegistro
 let contador = 0;
 let editStatus = false;
 let id = "";
+let seleccionarForm = document.querySelector(`form`);
 
 
 //---------------------AL CARGAR PÁGINA, MOSTRAR LOS REGISTROS DE NOTAS DE LA BASE DE DATOS------------------------
@@ -17,7 +18,7 @@ window.addEventListener('DOMContentLoaded', async ()=>{
         //AGREGO AL DIV CON ID 'PADRE' UN FORMULARIO CON LOS DATOS YA CARGADOS DE LA BASE DE DATOS
         $(`#padre`).append(
             `
-            <form name="formulario" id=${element.id}">
+            <form name="formulario" id=${element.id}" class="formulario">
                 <div class="container card-1  mt-2 limp">
                     <div class="row mt-3" id="apro${contador}"> 
                         <div class="col-10"> 
@@ -46,6 +47,7 @@ window.addEventListener('DOMContentLoaded', async ()=>{
     const btnsEliminar = $(`.eliminar`);
     //HACIENDO CLICK, LLAMA A UNA FUNCION Q TOMA COMO PARAMETRO AL OBJETIVO SELECCIONADO CON LOS DATOS
     btnsEliminar.on('click', function({target:{dataset}}){
+        $(seleccionarForm).remove()
         //ELIMINA EL REGISTRO POR SU ID
         eliminarRegistro(dataset.id);
         // hacer q se elimine en tiempo real $(`.contador${contador}`).hide(0).fadeOut(1000).remove();
@@ -67,9 +69,51 @@ window.addEventListener('DOMContentLoaded', async ()=>{
         $("#not").val(reg.promedio);
         editStatus = true;
         id = dataset.id;
+        $(seleccionarForm).hide(300)
         $('#genprom').val('Actualizar')
     })
+
+    
 })
+    const btnAZ = $(`.aZ`);
+    btnAZ.on('click', async function(){
+        let prueba = $(`.formulario`)
+        $(prueba).hide(300);
+        const querySnapshot = await getRegistros();
+         //RECORRE CADA REGISTRO
+        querySnapshot.forEach(element => {
+        //DATO ELEMENTO DEL REGISTRO '.(ALIAS DEL CAMPO)' 
+        const dato = element.data();
+        let prueba1 = [dato.nombre.toUpperCase()]
+        
+        console.log(prueba1)
+
+        //AGREGO AL DIV CON ID 'PADRE' UN FORMULARIO CON LOS DATOS YA CARGADOS DE LA BASE DE DATOS
+        $(`#padre`).append(
+            `
+            <form name="formulario" id=${element.id}" class="formulario">
+                <div class="container card-1  mt-2 limp">
+                    <div class="row mt-3" id="apro${contador}"> 
+                        <div class="col-10"> 
+                            <p>Alumno:<b> ${prueba1.sort()}</b></p>
+                            <p>Notas:<b> ${dato.notas}</b></p>
+                            <p>Promedio:<b> ${dato.promedio}</b></p>
+                        </div>
+                        <div class="col-2 mt-3" id="p2"> 
+                            <div class="my-1">
+                                <a href="#" class="eliminar"><i class="fas fa-trash-alt text-right btn btn-danger btn-sm" data-id=${element.id}></i></a>
+                            </div>
+                            <div>
+                                <a href="#"class="editar"><i class="fas fa-edit btn btn-info btn-sm" data-id=${element.id}></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+             `
+            )    
+    contador ++;
+    })})
 
 //---------------------------CALCULAR PROMEDIO--------------------------------------------------
 let promedio;
@@ -152,6 +196,7 @@ $(`#genprom`).on('click', function(){
     $("#nom").val("");// setea en blanco los inputs
     contador ++;//contador de div para separar y crear uno nuevo
     //window.location.reload(true);
+    !editStatus && $('#genprom').val('Generar promedio')
     }
 )
 
