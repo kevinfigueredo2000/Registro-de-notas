@@ -4,6 +4,7 @@ import { insert, getRegistros, eliminarRegistro, getRegistro, actualizarRegistro
 let contador = 0;
 let editStatus = false;
 let id = "";
+let arrayNombresDB = [];
 
 //---------------------AL CARGAR PÁGINA, MOSTRAR LOS REGISTROS DE NOTAS DE LA BASE DE DATOS------------------------
 window.addEventListener('DOMContentLoaded', async () => {
@@ -13,6 +14,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     querySnapshot.forEach(element => {
         //DATO ELEMENTO DEL REGISTRO '.(ALIAS DEL CAMPO)' 
         const dato = element.data();
+        arrayNombresDB.push(dato.nombre);
         //AGREGO AL DIV CON ID 'PADRE' UN FORMULARIO CON LOS DATOS YA CARGADOS DE LA BASE DE DATOS
         $(`#padre`).append(
             `
@@ -20,7 +22,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <div class="container card-1  mt-2 limp">
                     <div class="row mt-3" id="apro${contador}"> 
                         <div class="col-10"> 
-                            <p>Alumno:<b> ${dato.nombre}</b></p>
+                            <p class="nombreFormInit">Alumno:<b> ${dato.nombre}</b></p>
                             <p>Notas:<b> ${dato.notas}</b></p>
                             <p>Promedio:<b> ${dato.promedio}</b></p>
                         </div>
@@ -67,9 +69,21 @@ window.addEventListener('DOMContentLoaded', async () => {
         $("#nom").val(reg.nombre);
         $("#not").val(reg.promedio);
         editStatus = true;
-        id = dataset.id;
-        let seleccionarForm = document.querySelector(`form`);
-        $(seleccionarForm).hide(300)
+        //nombre del registro q viene directo de firebase
+        let nombreDB = reg.nombre
+        //nombre q se extrae de la DB y lo muestra al inicializar
+        let nombreInit = arrayNombresDB.find(element => element === reg.nombre)
+        /* if(nombreDB === nombreInit){
+            //let seleccionarForm = document.querySelector(($(".nombreFormInit")));
+            //$(seleccionarForm).hide(300);
+        }     */
+        $(".nombreFormInit").toArray().forEach(element => {
+            //let seleccionarForm = document.querySelector(($(".nombreFormInit > ")));
+            if(element.innerHTML.includes(nombreDB)){
+                $(element).parent().parent().parent().hide(300)
+            }
+        })
+            //console.log($(".nombreFormInit")[0].innerText)
         $('#genprom').val('Actualizar')
     })
 
@@ -79,7 +93,7 @@ const btnAZ = $(`.aZ`);
 btnAZ.on('click', async function () {
     let prueba = []
     let seleccionarForm = $(`.formulario`)
-    $(seleccionarForm).hide(300);
+
     const querySnapshot = await getRegistros();
     //RECORRE CADA REGISTRO
     querySnapshot.forEach(element => {
