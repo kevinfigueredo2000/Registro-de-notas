@@ -4,7 +4,8 @@ import { insert, getRegistros, eliminarRegistro, getRegistro, actualizarRegistro
 let contador = 0;
 let editStatus = false;
 let id = "";
-let arrayNombresDB = [];
+let idDBArray = [];
+//let arrayNombresDB = [];
 
 //---------------------AL CARGAR PÁGINA, MOSTRAR LOS REGISTROS DE NOTAS DE LA BASE DE DATOS------------------------
 window.addEventListener('DOMContentLoaded', async () => {
@@ -14,15 +15,18 @@ window.addEventListener('DOMContentLoaded', async () => {
     querySnapshot.forEach(element => {
         //DATO ELEMENTO DEL REGISTRO '.(ALIAS DEL CAMPO)' 
         const dato = element.data();
-        arrayNombresDB.push(dato.nombre);
+        let idDB = element.id;
+        idDBArray.push(idDB);
+        //console.log(idDBArray);
+        //arrayNombresDB.push(dato.nombre);
         //AGREGO AL DIV CON ID 'PADRE' UN FORMULARIO CON LOS DATOS YA CARGADOS DE LA BASE DE DATOS
         $(`#padre`).append(
             `
-            <form name="formulario" id=${element.id}" class="formulario">
+            <form name="formulario" id=${idDB}" class="formulario ${idDB}">
                 <div class="container card-1  mt-2 limp">
                     <div class="row mt-3" id="apro${contador}"> 
                         <div class="col-10"> 
-                            <p class="nombreFormInit">Alumno:<b> ${dato.nombre}</b></p>
+                            <p class="rolon">Alumno:<b> ${dato.nombre}</b></p>
                             <p>Notas:<b> ${dato.notas}</b></p>
                             <p>Promedio:<b> ${dato.promedio}</b></p>
                         </div>
@@ -68,22 +72,16 @@ window.addEventListener('DOMContentLoaded', async () => {
         const reg = doc.data();
         $("#nom").val(reg.nombre);
         $("#not").val(reg.promedio);
+        //define el id para despues tomarlo en la funcion de actualizar
+        id = dataset.id;
         editStatus = true;
         //nombre del registro q viene directo de firebase
-        let nombreDB = reg.nombre
+        //let nombreDB = reg.nombre
         //nombre q se extrae de la DB y lo muestra al inicializar
-        let nombreInit = arrayNombresDB.find(element => element === reg.nombre)
-        /* if(nombreDB === nombreInit){
-            //let seleccionarForm = document.querySelector(($(".nombreFormInit")));
-            //$(seleccionarForm).hide(300);
-        }     */
-        $(".nombreFormInit").toArray().forEach(element => {
-            //let seleccionarForm = document.querySelector(($(".nombreFormInit > ")));
-            if(element.innerHTML.includes(nombreDB)){
-                $(element).parent().parent().parent().hide(300)
-            }
+        idDBArray.forEach(element => {
+            //Hice una clase en el formulario init con el valor del id de cada uno, ya q no me tomaba por id
+            element === (id) && $(`.${element.toString()}`).hide(300);
         })
-            //console.log($(".nombreFormInit")[0].innerText)
         $('#genprom').val('Actualizar')
     })
 
@@ -185,7 +183,7 @@ $(`#genprom`).on('click', function () {
     //calcularPromedio();
     $(`#padre`).append(
         `
-        <form name="formulario">
+        <form name="formulario" class="formulario">
             <div class="container card-1 contador${contador} mt-3 limp">
                 <div class="row mt-3" id="apro${contador}"> 
                     <div class="col-10"> 
